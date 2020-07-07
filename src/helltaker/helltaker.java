@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class helltaker {
     public static void main(String args[]){
         start_round1();
+        start_round2();
     }
 
     int value;
@@ -162,11 +163,17 @@ public class helltaker {
 
             print_map(map);                                                         //현재 map 상황 출력
 
-            for (int i = 0; i < 4; i++) {                                           //주인공이 도착했을때
-                if (map[target_a.value][target_b.value] - 1 == 4) {
+                                                                        //주인공이 도착했을때
+            if (map[target_a.value-1][target_b.value] - 1 == 4)
                     success.value = 1;
-                }
-            }
+            if (map[target_a.value+1][target_b.value] - 1 == 4)
+                success.value = 1;
+            if (map[target_a.value][target_b.value-1] - 1 == 4)
+                success.value = 1;
+            if (map[target_a.value][target_b.value+1] - 1 == 4)
+                success.value = 1;
+
+
 
             System.out.println("남은 횟수: "+chance.value);
             System.out.println("key.value: "+key.value);
@@ -189,7 +196,31 @@ public class helltaker {
         helltaker a = new helltaker(1);
         helltaker b = new helltaker(6);
         helltaker target_a = new helltaker(6);
-        helltaker target_b = new helltaker(6);
+        helltaker target_b = new helltaker(7);
+
+
+        print_map(map);                             //현재 map 상황 출력
+
+        start(map,map1,success,chance,key,message,a,b,target_a,target_b );
+        if(success.value==1)
+            System.out.println("success");
+    }
+
+    public static void start_round2(){
+        int [][] map= {{0,0,0,0,0,0,0,0,0},{0,0,1,1,1,1,1,1,0},{0,0,1,0,1,1,1,1,0},{0,1,1,0,0,1,1,1,0},{0,1,1,0,0,1,1,1,0},{0,5,1,0,0,1,1,1,0},{0,0,0,0,0,4,1,1,0},{0,0,0,0,0,0,0,0,0}};
+        int [][] map1= {{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,1,1,0,0,0},{0,0,1,0,0,1,0,0,0},{0,0,0,0,0,1,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0}};
+
+        helltaker chance = new helltaker(20);
+        helltaker success = new helltaker(0);
+
+        helltaker message= new helltaker('a');
+        helltaker key = new helltaker(0);
+
+        helltaker a = new helltaker(5);
+        helltaker b = new helltaker(1);
+
+        helltaker target_a = new helltaker(6);
+        helltaker target_b = new helltaker(5);
 
 
         print_map(map);                             //현재 map 상황 출력
@@ -215,4 +246,7 @@ public class helltaker {
 helltaker 자료형을 통해 start 부분외에 필요부분만 바꿔서 함수의 재활용을 사용가능
 =>해야할것 : start_round2()만들어보기,해골이랑 돌 구현 , 좀더 키랑 트랩을 보이게 할수있는 방법을 연구
 
+
+7.7 start_round2() 함수를 이용해 다른 맵을 생성하고 실행까지 진행, 처음 오류가 나다가 start함수의 도착했을때의 코드도 오류가 존재해서 수정
+그외에 새로운 함수선언할때 맵 뿐만아니라 그위치에 시작되는 주인공과 공략대상 위치도 정확히 잡아야 처리가능
  */
