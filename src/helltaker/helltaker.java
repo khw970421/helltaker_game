@@ -273,7 +273,7 @@ public class helltaker {
                 break;
             }
         }
-        while(success.value==0);
+        while(success.value==0);                //1이되면 성공이니 더할필요없지
     }
 
     public static void start_round1(){
