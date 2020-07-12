@@ -3,7 +3,6 @@ import java.util.Scanner;
 public class helltaker {
     public static void main(String args[]){
         start_round1();
-        start_round2();
     }
 
     int value;
@@ -33,6 +32,38 @@ public class helltaker {
         map[a][b] = 5;
         map[a - 1][b] = 1;
     }
+    public static void changeskel_a(int [][]map,int a,int b){
+        map[a][b] = 1;
+        map[a][b-1] = 2;
+    }
+    public static void changeskel_w(int [][]map,int a,int b){
+        map[a][b] = 1;
+        map[a-1][b] = 2;
+    }
+    public static void changeskel_d(int [][]map,int a,int b){
+        map[a][b] = 1;
+        map[a][b+1] = 2;
+    }
+    public static void changeskel_s(int [][]map,int a,int b){
+        map[a][b] = 1;
+        map[a+1][b] = 2;
+    }
+    public static void changestone_a(int [][]map,int a,int b){
+        map[a][b] = 1;
+        map[a][b-1] = 3;
+    }
+    public static void changestone_w(int [][]map,int a,int b){
+        map[a][b] = 1;
+        map[a-1][b] = 3;
+    }
+    public static void changestone_d(int [][]map,int a,int b){
+        map[a][b] = 1;
+        map[a][b+1] = 3;
+    }
+    public static void changestone_s(int [][]map,int a,int b){
+        map[a][b] = 1;
+        map[a+1][b] = 3;
+    }
     public static void print_map(int[][] map)   //현재 map 상황 출력
     {
         for (int i = 0; i < map.length; i++)
@@ -59,21 +90,36 @@ public class helltaker {
             if (message.value1 == 'a'||message.value1=='A') {   //A 혹은 a를 눌렀을때 반응
                 b.value--;
                 chance.value--;
-                if(map[a.value][b.value]==0) {
+                if(map[a.value][b.value]==0) {          //막혀있으면 못가게 그위치에서 원상복귀
                     chance.value++;
                     b.value++;
                 }
-                else if(map[a.value][b.value]==9){
-                    if(key.value!=1){
+                else if(map[a.value][b.value]==9){      //자물쇠이면
+                    if(key.value!=1){                   //key가 없으면 원상복귀
                         chance.value++;
                         b.value++;
                     }
-                    else{
+                    else{                               //key가 있으면 자물쇠열고 그위치로 옮기기
                         change_a(map,a.value,b.value);
                     }
                 }
+                else if(map[a.value][b.value]==2){
+                    if(map[a.value][b.value-1]==1){
+                        changeskel_a(map,a.value,b.value);
+                    }
+                    else{
+                        map[a.value][b.value]=1;        //막혀있다면 해골부수기
+                    }
+                    b.value++;
+                }
+                else if(map[a.value][b.value]==3){
+                    if(map[a.value][b.value-1]==1) {
+                        changestone_a(map, a.value, b.value);
+                    }
+                    b.value++;
+                }
                 else {
-                    if(map1[a.value][b.value]==1){
+                    if(map1[a.value][b.value]==1){      //덫을 밟으면 하나더 감소
                         chance.value--;
                     }
                     check_key(map1,key,a.value,b.value);
@@ -96,6 +142,21 @@ public class helltaker {
                     else{
                         change_w(map,a.value,b.value);
                     }
+                }
+                else if(map[a.value][b.value]==2){
+                    if(map[a.value-1][b.value]==1){
+                        changeskel_w(map,a.value,b.value);
+                    }
+                    else{
+                        map[a.value][b.value]=1;        //막혀있다면 해골부수기
+                    }
+                    a.value++;
+                }
+                else if(map[a.value][b.value]==3){
+                    if(map[a.value-1][b.value]==1) {
+                        changestone_w(map, a.value, b.value);
+                    }
+                    a.value++;
                 }
                 else {
                     if(map1[a.value][b.value]==1){
@@ -123,6 +184,21 @@ public class helltaker {
                         change_d(map,a.value,b.value);
                     }
                 }
+                else if(map[a.value][b.value]==2){
+                    if(map[a.value][b.value+1]==1){
+                        changeskel_d(map,a.value,b.value);
+                    }
+                    else{
+                        map[a.value][b.value]=1;        //막혀있다면 해골부수기
+                    }
+                    b.value--;
+                }
+                else if(map[a.value][b.value]==3){
+                    if(map[a.value][b.value+1]==1) {
+                        changestone_d(map, a.value, b.value);
+                    }
+                    b.value--;
+                }
                 else {
                     if(map1[a.value][b.value]==1){
                         chance.value--;
@@ -147,6 +223,21 @@ public class helltaker {
                     else{
                         change_s(map,a.value,b.value);
                     }
+                }
+                else if(map[a.value][b.value]==2){
+                    if(map[a.value+1][b.value]==1){
+                        changeskel_s(map,a.value,b.value);
+                    }
+                    else{
+                        map[a.value][b.value]=1;        //막혀있다면 해골부수기
+                    }
+                    a.value--;
+                }
+                else if(map[a.value][b.value]==3){
+                    if(map[a.value+1][b.value]==1) {
+                        changestone_s(map, a.value, b.value);
+                    }
+                    a.value--;
                 }
                 else {
                     if(map1[a.value][b.value]==1){
@@ -186,10 +277,10 @@ public class helltaker {
     }
 
     public static void start_round1(){
-        int [][] map= {{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,1,5,0,0},{0,0,1,1,1,1,1,0,0},{0,0,1,1,1,1,0,0,0},{0,1,1,0,0,0,0,0,0},{0,1,1,1,1,1,1,0,0},{0,1,1,1,1,1,9,4,0},{0,0,0,0,0,0,0,0,0}};
-        int [][] map1= {{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,1,2,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0}};
+        int [][] map= {{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,1,5,0,0},{0,0,1,1,2,1,1,0,0},{0,0,1,2,1,2,0,0,0},{0,1,1,0,0,0,0,0,0},{0,1,3,1,1,3,1,0,0},{0,1,3,1,3,1,1,4,0},{0,0,0,0,0,0,0,0,0}};
+        int [][] map1= {{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0,0}};
         helltaker success = new helltaker(0);
-        helltaker chance = new helltaker(20);
+        helltaker chance = new helltaker(23);
         helltaker key = new helltaker(0);
         helltaker message= new helltaker('a');
 
@@ -254,4 +345,7 @@ helltaker 자료형을 통해 start 부분외에 필요부분만 바꿔서 함�
      1을제외한 어떠한거로 막혀있다면 =>if(옮길위치!=1) 해골을 1(통로,해골없애기)로 만들기 chance감수
 => 해골 2) 원하는위치에 돌이있으면 민곳으로 밀기(주인공 가만히) 2) 미는위치가 막혀있으면 없애기 불가능( 주인공 가만히)
                                =>if(옮길위치!=1) 돌은 그대로 chance감수
+
+7.12 해골(2)과 돌(3) 구현 완료 및 실행 정상작동
+=> 해야할것 : 코드를 좀더 줄이고 새로운 파일로 연결하여 함수들을 분산시켜놓아 보기 쉽게 만들기, 남은 라운드 구현해놓기, 덫이나 열쇄 그림구현
  */
