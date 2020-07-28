@@ -3,8 +3,10 @@ import java.util.Scanner;
 public class helltaker {
     public static void main(String args[]){
         change s = new change();
-        s.start_round1();
-        s.start_round2();
+        //s.start_round1();
+        //s.start_round2();
+        //s.start_round3();
+        s.start_round4();
     }
 }
 
