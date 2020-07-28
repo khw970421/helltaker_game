@@ -2,11 +2,11 @@ package helltaker;
 import java.util.Scanner;
 public class helltaker {
     public static void main(String args[]){
-        change s = new change();
-        //s.start_round1();
+        start_round s = new start_round();
+        s.start_round1();
         //s.start_round2();
         //s.start_round3();
-        s.start_round4();
+        //s.start_round4();
     }
 }
 
@@ -43,4 +43,7 @@ helltaker 자료형을 통해 start 부분외에 필요부분만 바꿔서 함�
  이 코드를 적으니 원래처럼 정상작동하였다.
 => 해야할 것 : 다른 라운드 몇개 만들기, change.java 코드 보면서 필요부분 줄이기 혹은 부가설명// , 그림으로 구현하는 방법없을까 고민하기
 
+7.28 js하느라 바빠서 오랜만에 맵 2개 만들고 change.java쪽 부분이 너무 양이 많아 start_round.java를 생성해 분리시켜놓았다. 이때 static과 nonstatic 에러가 나서
+    당황했지만 static change c = new change() 하고 몇몇부분 수정하니 정상실행되었다.
+=> 그림으로 구현하는 방법없을까 고민하기, round5의 경우 덫이 횟수에 따라 없어졌다 나타났다 하는것을 어떻게 해야할지 고민해보기 ( round5만 덫을 if else문으로 조금 수정 필요할듯)
  */
