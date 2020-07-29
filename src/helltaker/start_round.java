@@ -3,6 +3,7 @@ package helltaker;
 public class start_round {
     public start_round(){};
     static change c = new change();
+    static start s = new start();
     public static void start_round1(){
         int [][] map= {
                 {0,0,0,0,0,0,0,0,0},
@@ -16,12 +17,12 @@ public class start_round {
         };
         int [][] map1= {
                 {0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,0,1,1,0,0},
+                {0,0,1,1,1,1,1,0,0},
+                {0,0,1,1,1,1,0,0,0},
+                {0,1,1,0,0,0,0,0,0},
+                {0,1,1,1,1,1,1,0,0},
+                {0,1,1,1,1,1,1,1,0},
                 {0,0,0,0,0,0,0,0,0}
         };
         change success = new change(0);
@@ -35,11 +36,10 @@ public class start_round {
         change target_b = new change(7);
 
 
-        c.print_map(map);                             //현재 map 상황 출력
+        c.print_map(map,map1);                             //현재 map 상황 출력
 
-        c.start(map,map1,success,chance,key,message,a,b,target_a,target_b );
-        if(success.value==1)
-            System.out.println("success");
+        s.start(map,map1,success,chance,key,message,a,b,target_a,target_b );
+
     }
 
     public static void start_round2(){
@@ -55,12 +55,12 @@ public class start_round {
         };
         int [][] map1= {
                 {0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,1,1,0,0,0},
-                {0,0,1,0,0,1,0,0,0},
-                {0,0,0,0,0,1,0,0,0},
-                {0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0},
+                {0,0,1,1,1,1,1,1,0},
+                {0,0,1,0,3,3,1,1,0},
+                {0,1,3,0,0,3,1,1,0},
+                {0,1,1,0,0,3,1,1,0},
+                {0,1,1,0,0,1,1,1,0},
+                {0,0,0,0,0,1,1,1,0},
                 {0,0,0,0,0,0,0,0,0}
         };
 
@@ -77,11 +77,9 @@ public class start_round {
         change target_b = new change(5);
 
 
-        c.print_map(map);                             //현재 map 상황 출력
+        c.print_map(map,map1);                             //현재 map 상황 출력
 
-        c.start(map,map1,success,chance,key,message,a,b,target_a,target_b );
-        if(success.value==1)
-            System.out.println("success");
+        s.start(map,map1,success,chance,key,message,a,b,target_a,target_b );
     }
 
     public static void start_round3(){
@@ -98,13 +96,13 @@ public class start_round {
         };
         int [][] map1 = {
                 {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,1,1,0,0,0,0},
-                {0,0,0,1,0,1,0,0,0,0},
-                {0,0,0,0,0,0,1,1,0,0},
-                {0,2,0,1,0,1,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
+                {0,0,0,0,1,1,1,1,0,0},
+                {0,0,0,0,0,0,0,1,0,0},
+                {0,0,0,1,3,3,1,1,1,0},
+                {0,0,0,3,0,3,0,1,1,0},
+                {0,0,0,1,1,1,3,3,0,0},
+                {0,2,0,3,0,3,0,1,0,0},
+                {0,1,1,1,1,1,1,1,0,0},
                 {0,0,0,0,0,0,0,0,0,0}
         };
 
@@ -121,11 +119,9 @@ public class start_round {
         change target_b = new change(6);
 
 
-        c.print_map(map);                             //현재 map 상황 출력
+        c.print_map(map,map1);                             //현재 map 상황 출력
 
-        c.start(map,map1,success,chance,key,message,a,b,target_a,target_b );
-        if(success.value==1)
-            System.out.println("success");
+        s.start(map,map1,success,chance,key,message,a,b,target_a,target_b );
     }
     public static void start_round4(){
         int [][] map= {
@@ -139,11 +135,11 @@ public class start_round {
         };
         int [][] map1 = {
                 {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,2,0,0,0,0,0,0},
-                {0,0,0,1,1,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
-                {0,0,0,0,0,0,0,0,0,0},
+                {0,1,0,2,1,1,0,0,0,0},
+                {0,1,1,3,3,1,1,1,0,0},
+                {0,1,1,1,1,1,1,1,1,0},
+                {0,1,1,1,1,1,1,1,1,0},
+                {0,0,1,1,1,1,1,0,0,0},
                 {0,0,0,0,0,0,0,0,0,0}
         };
 
@@ -160,11 +156,9 @@ public class start_round {
         change target_b = new change(8);
 
 
-        c.print_map(map);                             //현재 map 상황 출력
+        c.print_map(map,map1);                             //현재 map 상황 출력
 
-        c.start(map,map1,success,chance,key,message,a,b,target_a,target_b );
-        if(success.value==1)
-            System.out.println("success");
+        s.start(map,map1,success,chance,key,message,a,b,target_a,target_b );
     }
 
 }
